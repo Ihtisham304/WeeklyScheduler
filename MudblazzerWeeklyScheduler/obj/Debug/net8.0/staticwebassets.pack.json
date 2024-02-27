@@ -1,0 +1,41 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\Asghar Ali\\source\\repos\\MudblazzerWeeklyScheduler\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\MudblazzerWeeklyScheduler.bundle.scp.css",
+      "PackagePath": "staticwebassets\\MudblazzerWeeklyScheduler.bundle.scp.css"
+    },
+    {
+      "Id": "C:\\Users\\Asghar Ali\\source\\repos\\MudblazzerWeeklyScheduler\\wwwroot\\app.css",
+      "PackagePath": "staticwebassets\\app.css"
+    },
+    {
+      "Id": "C:\\Users\\Asghar Ali\\source\\repos\\MudblazzerWeeklyScheduler\\wwwroot\\bootstrap\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\bootstrap\\bootstrap.min.css"
+    },
+    {
+      "Id": "C:\\Users\\Asghar Ali\\source\\repos\\MudblazzerWeeklyScheduler\\wwwroot\\bootstrap\\bootstrap.min.css.map",
+      "PackagePath": "staticwebassets\\bootstrap\\bootstrap.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\Asghar Ali\\source\\repos\\MudblazzerWeeklyScheduler\\wwwroot\\favicon.png",
+      "PackagePath": "staticwebassets\\favicon.png"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.MudblazzerWeeklyScheduler.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.MudblazzerWeeklyScheduler.props",
+      "PackagePath": "build\\MudblazzerWeeklyScheduler.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.MudblazzerWeeklyScheduler.props",
+      "PackagePath": "buildMultiTargeting\\MudblazzerWeeklyScheduler.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.MudblazzerWeeklyScheduler.props",
+      "PackagePath": "buildTransitive\\MudblazzerWeeklyScheduler.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

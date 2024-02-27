@@ -1,0 +1,331 @@
+﻿@page "/"
+
+<div class="container">
+<div class="wrapper">
+        <div class="radio-buttons-container">
+            <input type="radio" id="erase" name="scheduleOption" value="erase">
+            <label for="erase">Erase</label>
+            <input type="radio" id="add" name="scheduleOption" value="add">
+            <label for="add">Add</label>
+        </div>
+        <div class="header-container">
+            <h3 class="weekly-schedule-heading">Weekly Schedule</h3>
+        </div>
+
+        @{
+            var daysOfWeek = new[] { "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat" };
+        }
+
+
+        @foreach (var day in daysOfWeek)
+        {
+            <div class="day-scheduler">
+                <div class="day-name">@day</div>
+                <div class="progress-container">
+                    <div class="progress-bar">
+                        @* Add smaller graduation lines for each quarter-hour *@
+                        @for (int i = 0; i < 24 * 4; i++)
+                        {
+                            <div class="small-graduation" style="left:@(i * 100 / (24 * 4))%;"></div>
+                        }
+                        @* Add larger graduation lines and digits for each hour *@
+                        @for (int i = 0; i <= 24; i++)
+                        {
+                            <div class="graduation" style="left:@(i * 100 / 24)%;">
+                                <span class="digit">@i</span>
+                            </div>
+                        }
+                    </div>
+                    <div class="time-range">00:00-24:00</div>
+                    <div class="manual-input">Manual Input</div>
+                </div>
+            </div>
+        }
+        <div class="header-container">
+            <h3 class="weekly-schedule-heading">Holiday Schedule</h3>
+        </div>
+        <div class="holiday-schedule-container">
+            <div class="holiday-date-picker">
+                <div>
+                    <label for="holiday-date">Date</label>
+                    <input type="text" id="holiday-date" name="holiday-date" placeholder="">
+                </div>
+                <div class="holiday-btns">
+                    <div>
+                        <button class="add-holiday-button">+</button>
+                    </div>
+                    <div>
+                        <button class="add-holiday-button">-</button>
+                    </div>
+                </div>
+                <textarea></textarea>
+            </div>
+            <div class="holiday-progress-container">
+                <div class="day-name"></div>
+                <div class="holiday-progress-bar">
+                    @* Add smaller graduation lines for each quarter-hour *@
+                    @for (int i = 0; i < 24 * 4; i++)
+                    {
+                        <div class="small-graduation" style="left:@(i * 100 / (24 * 4))%;"></div>
+                    }
+                    @* Add larger graduation lines and digits for each hour *@
+                    @for (int i = 0; i <= 24; i++)
+                    {
+                        <div class="graduation" style="left:@(i * 100 / 24)%;">
+                            <span class="digit">@i</span>
+                        </div>
+                    }
+                    <div class="time-range">00:00-24:00</div>
+                </div>
+                <div class="manual-input">Manual Input</div>
+            </div>
+            <div class="savebtn">
+                <button class="save-holiday-button">Save</button>
+            </div>
+        </div>
+</div>
+</div>
+<style>
+    
+
+    .container{
+        max-width:1140px; 
+    }
+    .wrapper{
+        max-width: 1000px;
+        margin: 0 auto;
+        position:relative;
+    }
+    .header-container {
+       /* margin-top:15px; */
+       width: 100%;
+    }
+
+    .radio-buttons-container {
+        position:absolute;
+        right:0px;
+        top:-20px;
+    }
+
+        .radio-buttons-container input[type="radio"] {
+            margin-left: 10px;
+        }
+
+        .radio-buttons-container label {
+            margin-left: 5px;
+        }
+
+    .weekly-schedule-heading {
+        margin: 0;
+        font-size: 18px;
+        color: #333; /* Dark text color for the heading */
+        padding-left: 20px; /* Space from the left edge */
+        background-color: #f5f5f5;
+    }
+
+    .day-scheduler {
+        display: flex; /* Use flexbox for layout */
+        align-items: center; /* Center items vertically */
+        font-family: Arial, sans-serif;
+        margin-bottom: 10px; /* Space between days */
+        width:100%;
+        
+    }
+
+    .day-name {
+        font-size: 15px;
+        margin-right: 5px; /* Space between day name and progress bar */
+        width: 50px; /* Adjusted width of the day name container */
+        text-align: right; /* Align the short day name to the right */
+        padding-top: 15px; /* Center the day name vertically */
+        width: 5%;
+       
+    }
+
+    .progress-container {
+        position: relative;
+        flex-grow: 1; /* Allow the container to take up remaining space */
+        display: flex;
+        align-items: center;
+        padding-top: 20px; /* Space for the graduation lines and digits */
+        width: 95%;
+       
+    }
+
+    .progress-bar {
+        position: relative;
+        width: calc(100% - 100px); /* Adjust width to account for time-range and manual input */
+        height: 15px; /* Reduced height of the progress bar */
+        background-color: #006400; /* Slightly darker green background color */
+        border: 1px solid black;
+        overflow: visible; /* Ensure that children elements can render outside the box */
+        margin: 0 5px; /* Space between progress bar and time-range/manual input */
+        width:100%;
+    }
+
+    .graduation {
+        position: absolute;
+        top: -10px; /* Position above the progress bar */
+        height: 10px; /* Height of the larger graduation lines */
+        width: 1px;
+        background-color: black;
+    }
+
+    .small-graduation {
+        position: absolute;
+        top: -5px; /* Position above the progress bar */
+        height: 5px; /* Height of the smaller graduation lines */
+        width: 1px;
+        background-color: black;
+    }
+
+    .digit {
+        position: absolute;
+        top: -12px; /* Reduced space between graduation lines and digits */
+        color: black; /* Black color for the digits */
+        font-size: 10px;
+        transform: translateX(-50%); /* Center digits horizontally on the graduation lines */
+        white-space: nowrap; /* Ensure digits do not wrap */
+    }
+
+    .time-range, .manual-input {
+        font-size: 12px;
+        white-space: nowrap;
+        height: 14px; /* Fixed height for alignment */
+        line-height: 14px; /* Align text vertically */
+    }
+
+    .time-range {
+        position: absolute;
+        left: 5px;
+        bottom: -15px; /* Position below the progress bar */
+        font-size: 12px;
+    }
+
+    .manual-input {
+        position: absolute;
+        right:0px;
+        bottom: -15px; /* Position below the progress bar */
+        color: grey;
+        font-size: 12px;
+    }
+
+    .holiday-schedule-container {
+        margin-top: 10px; /* Space above the holiday schedule section */
+  
+    }
+
+    .holiday-schedule-heading {
+        font-size: 20px;
+        color: #333; /* Dark text color for the heading */
+        margin-bottom: 10px; /* Space below the heading */
+        width:100%;
+    }
+
+    .holiday-date-picker {
+        width: 70%;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        gap: 20px;
+      
+       
+    }
+
+        .holiday-date-picker label {
+            margin-right: 5px;
+        }
+
+        .holiday-date-picker input[type="text"] {
+            margin-right: 5px;
+        }
+        .holiday-date-picker textarea{
+            margin-left: 10px;
+        }
+ .holiday-btns{
+        width: 70px;
+        
+    }
+ .holiday-btns div{
+     width: 100%;
+ }
+    .add-holiday-button {
+        /* Style the button as needed */
+        width: 100%;
+        padding: 6px 8px;
+        margin-top: 3px;
+        border:none;
+        outline: none;
+        background: grey;
+    }
+
+    .holiday-progress-container {
+        /* Similar styles as .progress-container for the weekly schedule */
+        position: relative;
+        flex-grow: 1; /* Allow the container to take up remaining space */
+        display: flex;
+        align-items: center;
+        padding-top: 20px; /* Space for the gradua */
+        width: 100%;
+        /* border: 1px solid crimson; */
+        margin-top:5px;
+    }
+
+
+    .holiday-progress-bar {
+        /* Similar styles as .progress-bar for the weekly schedule */
+        position: relative;
+        width: calc(100% - 100px); /* Adjust width to account for time-range and manual input */
+        height: 15px; /* Reduced height of the progress bar */
+        background-color: #006400; /* Slightly darker green background color */
+        border: 1px solid black;
+        overflow: visible; /* Ensure that children elements can render outside the box */
+        margin: 0 auto; /* Space between progress bar and time-range/manual input */
+        width: 95%;
+    }
+
+    .holiday-progress-bar .time-range {
+        left: 0px;
+        color: green;
+    }
+    .save-holiday-button {
+        /* Style the button as needed */
+        display: block; /* Make the button a block element */
+        margin-top: 10px; /* Space above the button */
+        border: none;
+        outline: none;
+        background: grey;
+        position: absolute;
+        bottom: -45px;
+        right: 0px;
+    }
+  media (max-width: 768px) {
+  .holiday-date-picker {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .holiday-date-picker label,
+  .holiday-date-picker input[type="text"],
+  .holiday-date-picker textarea {
+    width: 100%;
+    margin-bottom: 10px; /* Add space between elements when stacked */
+  }
+
+  .holiday-btns {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .add-holiday-button {
+    width: 48%; /* Adjust button width to fit side by side */
+  }
+
+  .save-holiday-button {
+    width: 100%;
+    position: relative; /* Reset position to flow in the document */
+    bottom: auto;
+    right: auto;
+    margin-top: 20px; /* Add space above the button */
+  }
+</style>
